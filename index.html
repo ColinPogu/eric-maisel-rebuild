@@ -1,0 +1,472 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Eric Maisel</title>
+<meta name="description" content="Eric Maisel. Author, family therapist, and creativity coach. More than forty years devoted to the human experience, with more than sixty books on meaning, creativity, and the art of being human." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#f7f3ec;
+    --paper-2:#efe8db;
+    --paper-3:#ece3d3;
+    --ink:#201d18;
+    --ink-soft:#453f36;
+    --muted:#746b5c;
+    --accent:#2e5a4f;
+    --accent-ink:#223f38;
+    --gold:#a9693f;
+    --line:#ddd2bf;
+    --line-soft:#e6dccb;
+    --card:#fffdf9;
+    --shadow:0 1px 2px rgba(32,29,24,.04),0 12px 30px rgba(32,29,24,.07);
+    --maxw:1120px;
+    --serif:"Fraunces",Georgia,"Times New Roman",serif;
+    --sans:"Inter",system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:var(--sans);
+    font-size:17px;
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+    text-rendering:optimizeLegibility;
+  }
+  a{color:inherit}
+  img{max-width:100%;display:block}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px}
+  h1,h2,h3{font-family:var(--serif);font-weight:500;line-height:1.1;letter-spacing:-.01em;margin:0}
+  p{margin:0 0 1em}
+  .eyebrow{
+    font-family:var(--sans);
+    font-size:.78rem;
+    letter-spacing:.18em;
+    text-transform:uppercase;
+    color:var(--accent);
+    font-weight:600;
+    margin:0 0 18px;
+  }
+
+  /* Buttons */
+  .btn{
+    display:inline-flex;align-items:center;gap:.5em;
+    font-family:var(--sans);font-size:.95rem;font-weight:600;
+    padding:14px 26px;border-radius:999px;
+    text-decoration:none;cursor:pointer;border:1px solid transparent;
+    transition:transform .15s ease, background .2s ease, color .2s ease, border-color .2s ease;
+  }
+  .btn-primary{background:var(--accent);color:#fdfaf3}
+  .btn-primary:hover{background:var(--accent-ink);transform:translateY(-1px)}
+  .btn-ghost{background:transparent;color:var(--ink);border-color:var(--line)}
+  .btn-ghost:hover{border-color:var(--accent);color:var(--accent-ink);transform:translateY(-1px)}
+
+  /* Nav */
+  header.nav{
+    position:sticky;top:0;z-index:50;
+    background:rgba(247,243,236,.86);
+    backdrop-filter:saturate(1.1) blur(10px);
+    border-bottom:1px solid var(--line-soft);
+  }
+  .nav-inner{display:flex;align-items:center;justify-content:space-between;gap:24px;height:72px}
+  .brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--ink)}
+  .mono{
+    width:40px;height:40px;flex:0 0 40px;border-radius:50%;
+    display:grid;place-items:center;
+    background:var(--accent);color:#fdfaf3;
+    font-family:var(--serif);font-weight:600;font-size:1.02rem;letter-spacing:.02em;
+  }
+  .brand-name{font-family:var(--serif);font-size:1.28rem;font-weight:600;letter-spacing:-.01em;line-height:1}
+  .brand-sub{font-family:var(--sans);font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-top:3px}
+  nav.links{display:flex;align-items:center;gap:28px}
+  nav.links a{text-decoration:none;font-size:.95rem;font-weight:500;color:var(--ink-soft);transition:color .2s}
+  nav.links a:hover{color:var(--accent-ink)}
+  nav.links .btn{padding:10px 20px}
+  .menu-toggle{display:none;background:none;border:1px solid var(--line);border-radius:10px;padding:8px 12px;cursor:pointer;font-size:1rem;color:var(--ink)}
+
+  /* Hero */
+  .hero{position:relative;overflow:hidden;background:linear-gradient(180deg,var(--paper) 0%,var(--paper-2) 100%)}
+  .hero-inner{padding:92px 0 84px;max-width:860px}
+  .hero h1{font-size:clamp(2.7rem,6.2vw,4.8rem);letter-spacing:-.02em}
+  .hero .lede{font-family:var(--serif);font-weight:400;font-style:italic;font-size:clamp(1.2rem,2.4vw,1.55rem);color:var(--accent-ink);margin:20px 0 4px}
+  .hero .say{font-size:1.12rem;color:var(--ink-soft);max-width:620px;margin-top:22px}
+  .hero-cta{display:flex;flex-wrap:wrap;gap:14px;margin-top:34px}
+  .quote-mark{
+    position:absolute;right:-10px;top:40px;
+    font-family:var(--serif);font-size:22rem;line-height:1;color:var(--accent);opacity:.06;
+    pointer-events:none;user-select:none;
+  }
+
+  /* Credential strip */
+  .creds{background:var(--accent);color:#f1ece0}
+  .creds .wrap{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;padding:40px 28px}
+  .cred{text-align:center}
+  .cred .num{font-family:var(--serif);font-size:clamp(1.8rem,3vw,2.4rem);font-weight:600;color:#fdfaf3;line-height:1.05}
+  .cred .lbl{font-size:.9rem;color:#cdd8cf;margin-top:6px;letter-spacing:.01em}
+
+  /* Section shell */
+  section{padding:84px 0}
+  .sec-head{max-width:640px;margin-bottom:44px}
+  .sec-head h2{font-size:clamp(2rem,3.8vw,2.7rem)}
+  .sec-head p{color:var(--muted);margin-top:14px;font-size:1.05rem}
+
+  /* Books */
+  .books{background:var(--paper)}
+  .book-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+  .book{
+    position:relative;background:var(--card);border:1px solid var(--line-soft);border-radius:16px;
+    padding:0 0 24px;overflow:hidden;box-shadow:var(--shadow);
+    transition:transform .18s ease, box-shadow .18s ease;
+  }
+  .book:hover{transform:translateY(-3px);box-shadow:0 2px 4px rgba(32,29,24,.05),0 20px 44px rgba(32,29,24,.11)}
+  .spine{height:150px;display:flex;align-items:flex-end;padding:22px;color:#fdfaf3;position:relative}
+  .spine.one{background:linear-gradient(145deg,#2e5a4f,#223f38)}
+  .spine.two{background:linear-gradient(145deg,#6d4b33,#4a3120)}
+  .spine.three{background:linear-gradient(145deg,#4b5566,#30384a)}
+  .spine .kicker{font-family:var(--sans);font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;opacity:.82;position:absolute;top:18px;left:22px}
+  .tag{
+    position:absolute;top:16px;right:16px;background:var(--gold);color:#fff;
+    font-size:.66rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;
+    padding:5px 11px;border-radius:999px;
+  }
+  .book h3{font-size:1.35rem;padding:22px 22px 0;letter-spacing:-.01em}
+  .book p{color:var(--muted);font-size:.95rem;padding:8px 22px 0;margin:0}
+  .book .read{display:inline-flex;align-items:center;gap:.4em;margin:16px 22px 0;color:var(--accent);font-weight:600;font-size:.9rem;text-decoration:none}
+  .book .read:hover{color:var(--accent-ink)}
+  .catalog-note{
+    margin-top:26px;display:flex;flex-wrap:wrap;align-items:center;gap:16px;justify-content:space-between;
+    background:var(--paper-3);border:1px solid var(--line);border-radius:16px;padding:22px 26px;
+  }
+  .catalog-note p{margin:0;color:var(--ink-soft)}
+  .catalog-note strong{font-family:var(--serif);font-weight:600}
+
+  /* Work */
+  .work{background:var(--paper-2)}
+  .work-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:22px}
+  .work-card{
+    background:var(--card);border:1px solid var(--line-soft);border-radius:16px;padding:30px 30px 28px;
+    box-shadow:var(--shadow);transition:transform .18s ease, box-shadow .18s ease;
+  }
+  .work-card:hover{transform:translateY(-3px);box-shadow:0 2px 4px rgba(32,29,24,.05),0 20px 44px rgba(32,29,24,.11)}
+  .work-card .n{font-family:var(--serif);color:var(--gold);font-size:1.1rem;font-weight:600;letter-spacing:.04em}
+  .work-card h3{font-size:1.4rem;margin:10px 0 0}
+  .work-card .role{color:var(--accent);font-weight:600;font-size:.92rem;margin:6px 0 0}
+  .work-card p{color:var(--muted);font-size:.97rem;margin:14px 0 0}
+
+  /* About */
+  .about{background:var(--paper)}
+  .about-inner{display:grid;grid-template-columns:1.15fr .85fr;gap:60px;align-items:center}
+  .about h2{font-size:clamp(2rem,3.6vw,2.6rem);margin-bottom:20px}
+  .about p{color:var(--ink-soft);font-size:1.06rem}
+  .about .pull{
+    font-family:var(--serif);font-style:italic;font-size:1.5rem;line-height:1.4;color:var(--accent-ink);
+    border-left:3px solid var(--gold);padding:6px 0 6px 26px;margin:0;
+  }
+  .about .pull cite{display:block;font-style:normal;font-family:var(--sans);font-size:.85rem;letter-spacing:.06em;color:var(--muted);margin-top:14px;text-transform:uppercase}
+
+  /* Newsletter */
+  .news{background:var(--accent)}
+  .news .wrap{padding:76px 28px;text-align:center}
+  .news h2{color:#fdfaf3;font-size:clamp(2rem,3.6vw,2.6rem)}
+  .news p{color:#cdd8cf;max-width:520px;margin:16px auto 0;font-size:1.05rem}
+  .news form{display:flex;gap:12px;max-width:500px;margin:30px auto 0;flex-wrap:wrap;justify-content:center}
+  .news input[type=email]{
+    flex:1;min-width:220px;padding:15px 20px;border-radius:999px;border:1px solid transparent;
+    font-family:var(--sans);font-size:1rem;background:#fdfaf3;color:var(--ink);
+  }
+  .news input[type=email]:focus{outline:2px solid var(--gold);outline-offset:1px}
+  .news .btn-gift{background:var(--gold);color:#fff}
+  .news .btn-gift:hover{background:#8f5733;transform:translateY(-1px)}
+  .news .fineprint{color:#aebcb2;font-size:.82rem;margin-top:16px}
+  .news .thanks{display:none;color:#fdfaf3;font-family:var(--serif);font-size:1.25rem;margin-top:24px}
+  .news .thanks.show{display:block;animation:fade .4s ease}
+  @keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+
+  /* Footer */
+  footer{background:var(--ink);color:#d6cdbd;padding:60px 0 30px}
+  .foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:36px}
+  footer .brand-name{color:#f4eee2}
+  footer .mono{background:#f4eee2;color:var(--ink)}
+  footer .blurb{color:#9d9382;font-size:.95rem;margin-top:16px;max-width:300px}
+  footer h4{font-family:var(--sans);font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:#8f8674;margin:0 0 16px}
+  footer ul{list-style:none;margin:0;padding:0}
+  footer li{margin-bottom:11px}
+  footer a{text-decoration:none;color:#d6cdbd;font-size:.95rem;transition:color .2s}
+  footer a:hover{color:#fff}
+  .foot-bottom{border-top:1px solid #35302a;margin-top:46px;padding-top:24px;display:flex;flex-wrap:wrap;gap:12px;justify-content:space-between;color:#8f8674;font-size:.85rem}
+  .foot-social{display:flex;gap:18px}
+
+  /* Responsive */
+  @media (max-width:900px){
+    .about-inner{grid-template-columns:1fr;gap:34px}
+    .foot-grid{grid-template-columns:1fr 1fr}
+  }
+  @media (max-width:760px){
+    nav.links{
+      position:fixed;inset:72px 0 auto 0;background:var(--paper);
+      flex-direction:column;align-items:stretch;gap:0;padding:8px 0 16px;
+      border-bottom:1px solid var(--line);transform:translateY(-130%);
+      transition:transform .28s ease;box-shadow:0 18px 30px rgba(32,29,24,.08);
+    }
+    nav.links.open{transform:translateY(0)}
+    nav.links a{padding:14px 28px;border-top:1px solid var(--line-soft)}
+    nav.links .btn{margin:14px 28px 4px;justify-content:center}
+    .menu-toggle{display:inline-flex}
+    .book-grid,.work-grid{grid-template-columns:1fr}
+    .creds .wrap{grid-template-columns:1fr;gap:26px}
+    .hero-inner{padding:66px 0 60px}
+    section{padding:62px 0}
+    .brand-sub{display:none}
+  }
+  @media (max-width:430px){
+    body{font-size:16px}
+    .foot-grid{grid-template-columns:1fr}
+  }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap nav-inner">
+    <a class="brand" href="#top" aria-label="Eric Maisel home">
+      <span class="mono">EM</span>
+      <span>
+        <span class="brand-name">Eric Maisel</span>
+        <span class="brand-sub">The Difficult Art of Being Human</span>
+      </span>
+    </a>
+    <button class="menu-toggle" aria-label="Open menu" aria-expanded="false">Menu</button>
+    <nav class="links" id="nav-links">
+      <a href="#books">Books</a>
+      <a href="#work">Work with Eric</a>
+      <a href="#about">About</a>
+      <a href="#newsletter">Newsletter</a>
+      <a class="btn btn-primary" href="#work">Start here</a>
+    </nav>
+  </div>
+</header>
+
+<a id="top"></a>
+
+<section class="hero">
+  <span class="quote-mark" aria-hidden="true">&ldquo;</span>
+  <div class="wrap hero-inner">
+    <p class="eyebrow">Author, Therapist, Creativity Coach</p>
+    <h1>The Difficult Art of Being Human</h1>
+    <p class="lede">A life's work devoted to the human experience.</p>
+    <p class="say">For more than forty years, Eric Maisel has helped people create meaning, work through creative blocks, and understand their minds without reaching first for a label. The author of more than sixty books, he writes and coaches on creativity, purpose, and the practical art of living a creative life.</p>
+    <div class="hero-cta">
+      <a class="btn btn-primary" href="#books">Explore the books</a>
+      <a class="btn btn-ghost" href="#work">Work with Eric</a>
+    </div>
+  </div>
+</section>
+
+<section class="creds" aria-label="Background">
+  <div class="wrap">
+    <div class="cred">
+      <div class="num">40+ years</div>
+      <div class="lbl">As author, therapist, and creativity coach</div>
+    </div>
+    <div class="cred">
+      <div class="num">60+ books</div>
+      <div class="lbl">On creativity, meaning, and the human experience</div>
+    </div>
+    <div class="cred">
+      <div class="num">Thousands</div>
+      <div class="lbl">Of creative and performing artists coached</div>
+    </div>
+  </div>
+</section>
+
+<section class="books" id="books">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">The Books</p>
+      <h2>Reading for a creative life</h2>
+      <p>New work and longtime favorites on meaning, purpose, and the art of being human, from a catalog of more than sixty titles.</p>
+    </div>
+    <div class="book-grid">
+      <article class="book">
+        <div class="spine one"><span class="kicker">New Book</span></div>
+        <span class="tag">New</span>
+        <h3>The Reenchantment of Meaning</h3>
+        <p>Eric's latest, on making meaning when it is no longer simply handed to us.</p>
+        <a class="read" href="#newsletter">Learn more &rarr;</a>
+      </article>
+      <article class="book">
+        <div class="spine two"><span class="kicker">New Book</span></div>
+        <span class="tag">New</span>
+        <h3>Existential Nomads</h3>
+        <p>A new book on living thoughtfully when the old frameworks no longer fit.</p>
+        <a class="read" href="#newsletter">Learn more &rarr;</a>
+      </article>
+      <article class="book">
+        <div class="spine three"><span class="kicker">Collection</span></div>
+        <h3>Books for Creatives</h3>
+        <p>Bestsellers that support your creative journey, for artists, writers, and makers.</p>
+        <a class="read" href="#newsletter">Browse the collection &rarr;</a>
+      </article>
+    </div>
+    <div class="catalog-note">
+      <p><strong>More than sixty books in print.</strong> Work on creativity, meaning, purpose, and humane alternatives to conventional thinking about the mind.</p>
+      <a class="btn btn-ghost" href="#newsletter">See all books</a>
+    </div>
+  </div>
+</section>
+
+<section class="work" id="work">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">Work with Eric</p>
+      <h2>Coaching, training, and certification</h2>
+      <p>Ways to work with Eric directly, whether you want to get creating again, coach others, or finish the book you have been carrying.</p>
+    </div>
+    <div class="work-grid">
+      <article class="work-card">
+        <div class="n">01</div>
+        <h3>Individual Creativity Coaching</h3>
+        <p class="role">Get unblocked, create regularly, flourish as a creative</p>
+        <p>One to one coaching to move past blocks, build a sustainable creative practice, and do the work that matters to you.</p>
+      </article>
+      <article class="work-card">
+        <div class="n">02</div>
+        <h3>Creativity Coach Trainings</h3>
+        <p class="role">16-week trainings led by Eric Maisel personally</p>
+        <p>Learn to coach other creatives, with training guided directly by Eric over sixteen weeks.</p>
+      </article>
+      <article class="work-card">
+        <div class="n">03</div>
+        <h3>Nonfiction Book Coaching</h3>
+        <p class="role">From idea to finished manuscript</p>
+        <p>Focused coaching to help you shape, draft, and complete the nonfiction book you want to write.</p>
+      </article>
+      <article class="work-card">
+        <div class="n">04</div>
+        <h3>Human Experience Specialist</h3>
+        <p class="role">A humane way of helping</p>
+        <p>Professional certification in an approach that accompanies rather than diagnoses, and collaborates rather than prescribes.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="about" id="about">
+  <div class="wrap about-inner">
+    <div>
+      <p class="eyebrow">About Eric</p>
+      <h2>A humane approach to being human</h2>
+      <p>Eric Maisel has spent more than forty years as an author, family therapist, creativity coach, teacher, and trainer, and as an advocate for more humane ways of meeting human difficulty.</p>
+      <p>His work asks practical questions. How do we create meaning when it is not simply given to us? How do we live creatively? How can we understand our minds without rushing to a label, and help others without pretending to have every answer? These questions run through his books, his coaching, and his trainings.</p>
+    </div>
+    <div>
+      <blockquote class="pull">
+        A way of helping that accompanies rather than diagnoses, and collaborates rather than prescribes.
+        <cite>The Human Experience Specialist</cite>
+      </blockquote>
+    </div>
+  </div>
+</section>
+
+<section class="news" id="newsletter">
+  <div class="wrap">
+    <h2>Join the newsletter</h2>
+    <p>Subscribe for Eric's writing on creativity, meaning, and the human experience, and receive a free gift when you join.</p>
+    <form id="news-form" novalidate>
+      <input type="email" id="news-email" name="email" placeholder="Your email address" aria-label="Your email address" required />
+      <button type="submit" class="btn btn-gift">Subscribe and get the gift</button>
+    </form>
+    <p class="fineprint">No spam. Unsubscribe anytime.</p>
+    <p class="thanks" id="news-thanks">Thank you. Your free gift is on its way to your inbox.</p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <a class="brand" href="#top" style="color:#f4eee2">
+          <span class="mono">EM</span>
+          <span class="brand-name">Eric Maisel</span>
+        </a>
+        <p class="blurb">Author, family therapist, and creativity coach. More than forty years devoted to the difficult art of being human.</p>
+      </div>
+      <div>
+        <h4>Explore</h4>
+        <ul>
+          <li><a href="#books">Books</a></li>
+          <li><a href="#work">Work with Eric</a></li>
+          <li><a href="#about">About Eric</a></li>
+          <li><a href="#newsletter">Newsletter</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Work with Eric</h4>
+        <ul>
+          <li><a href="#work">Creativity Coaching</a></li>
+          <li><a href="#work">Coach Trainings</a></li>
+          <li><a href="#work">Nonfiction Book Coaching</a></li>
+          <li><a href="#work">Human Experience Specialist</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>More</h4>
+        <ul>
+          <li><a href="https://ericmaisel.com" target="_blank" rel="noopener">Our Store</a></li>
+          <li><a href="https://ericmaisel.com" target="_blank" rel="noopener">Blog</a></li>
+          <li><a href="https://ericmaisel.com" target="_blank" rel="noopener">Ten Tips Library</a></li>
+          <li><a href="https://ericmaisel.com" target="_blank" rel="noopener">Speaking Engagements</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>Copyright Eric Maisel. All rights reserved.</span>
+      <span class="foot-social">
+        <a href="https://ericmaisel.com" target="_blank" rel="noopener">Facebook</a>
+        <a href="https://ericmaisel.com" target="_blank" rel="noopener">X</a>
+        <a href="https://ericmaisel.com" target="_blank" rel="noopener">Instagram</a>
+      </span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  (function(){
+    // Mobile nav toggle
+    var toggle=document.querySelector('.menu-toggle');
+    var links=document.getElementById('nav-links');
+    if(toggle&&links){
+      toggle.addEventListener('click',function(){
+        var open=links.classList.toggle('open');
+        toggle.setAttribute('aria-expanded',open?'true':'false');
+      });
+      links.addEventListener('click',function(e){
+        if(e.target.tagName==='A'){links.classList.remove('open');toggle.setAttribute('aria-expanded','false');}
+      });
+    }
+    // Newsletter: success message appears only after a real submit
+    var form=document.getElementById('news-form');
+    var thanks=document.getElementById('news-thanks');
+    var email=document.getElementById('news-email');
+    if(form){
+      form.addEventListener('submit',function(e){
+        e.preventDefault();
+        if(!email.value||email.value.indexOf('@')===-1){
+          email.focus();
+          return;
+        }
+        form.style.display='none';
+        thanks.classList.add('show');
+      });
+    }
+  })();
+</script>
+
+</body>
+</html>
